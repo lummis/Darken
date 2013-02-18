@@ -1,0 +1,17 @@
+//
+// Prefix header for all source files of the 'Darken' target in the 'Darken' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses game center & other features available only in iPhone SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+	#import <UIKit/UIKit.h>
+    #import "cocos2d.h"
+    #import "Common.h"
+    #import "GameConfig.h"
+#endif
