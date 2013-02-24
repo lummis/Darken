@@ -111,7 +111,6 @@
         //key for Darken: 719e17e9ca33a2daae65d30-caf01a18-461f-11e2-346c-004b50a28849
         //key for Darkentest: a4e3ba70ffdcf355c07975f-837ccad8-4623-11e2-346e-004b50a28849
         //key for DarkenRC1: 9d46f2028e2210342c0ad50-21b817c8-6a31-11e2-7a13-004535b6c551
-        //the following key is for DarkenRC1. Replace it with the key for Darken for live app
     [[LocalyticsSession sharedLocalyticsSession] startSession:@"719e17e9ca33a2daae65d30-caf01a18-461f-11e2-346c-004b50a28849"];
     [[LocalyticsSession sharedLocalyticsSession] setLoggingEnabled:NO];
     

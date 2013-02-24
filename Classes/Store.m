@@ -211,34 +211,6 @@
     selectedProductLabelFont = [UIFont systemFontOfSize:18];
 }
 
-//-(void) productViewAddBorder {
-//    UIImage *top = [UIImage imageNamed:@"storeKit-horizontal-line"];
-//    UIImage *left = [UIImage imageNamed:@"storeKit-vertical-line"];
-//    UIImage *right = [UIImage imageNamed:@"storeKit-vertical-line"];
-//    UIImage *bottom = [UIImage imageNamed:@"storeKit-horizontal-line"];
-//    
-//    CGFloat lineWidth = 4.f;
-//    UIImageView *topView = [[UIImageView alloc] initWithImage:top];
-//    topView.frame = CGRectMake(tableX, tableY - titleH, width, lineWidth);
-//    [host addSubview:topView];
-//    [topView release];
-//    
-//    UIImageView *leftView = [[UIImageView alloc] initWithImage:left];
-//    leftView.frame = CGRectMake(tableX, tableY - titleH, lineWidth, height);
-//    [host addSubview:leftView];
-//    [leftView release];
-//    
-//    UIImageView *rightView = [[UIImageView alloc] initWithImage:right];
-//    rightView.frame = CGRectMake(width - lineWidth, tableY - titleH, lineWidth, height);
-//    [host addSubview:rightView];
-//    [rightView release];
-//    
-//    UIImageView *bottomView = [[UIImageView alloc] initWithImage:bottom];
-//    bottomView.frame = CGRectMake(tableX, height - lineWidth, width, lineWidth);
-//    [host addSubview:bottomView];
-//    [bottomView release];
-//}
-
 #pragma mark - product table delegate methods
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forIndexPath:(NSIndexPath *)indexPath {
@@ -332,8 +304,7 @@
             //localizedTitle is like "pack of 20 stars"
         NSString *productFullDescription = product.localizedTitle;
         NSCharacterSet *spaceSet = [NSCharacterSet whitespaceCharacterSet];
-//        NSString *productQuantity = [[productFullDescription componentsSeparatedByCharactersInSet:spaceSet] objectAtIndex:2];   //old style
-//        NSString *productKind = [[productFullDescription componentsSeparatedByCharactersInSet:spaceSet] objectAtIndex:3];   //old style
+
         NSString *productQuantity = [[productFullDescription componentsSeparatedByCharactersInSet:spaceSet] objectAtIndex:0];   //new style
         NSString *productKind = [[productFullDescription componentsSeparatedByCharactersInSet:spaceSet] objectAtIndex:1];   //new style
         NSString *productNameWithEllipsis = [productQuantity stringByAppendingFormat:@" %@ ... ", productKind];

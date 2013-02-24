@@ -51,7 +51,6 @@
 -(void) doCancel:(id)sender;    //called by the 'Cancel' button
 -(void) doBuy:(id)sender;   //called by the 'Buy' button
 -(void) productViewAddTable;
-//-(void) productViewAddBorder;
 -(void) whitenTextInTable:(UITableView *)tableView newIndexPath:(NSIndexPath *)newIndexPath;
 
 @end

@@ -105,7 +105,7 @@
 -(NSString *) textForDisplay {
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:5];
     
-    [items addObject:@"During levels 1 and 2 tutorial messages will appear that help you learn the major features of Darken.  If you don't want to read tutorial messages you can turn them off on the Settings screen, but this is not recommended unless you've played Darken before.\r\rComplete \"How to Play\" instructions are available on the web at www.darkengame.com.  Happy Darkening!"];
+    [items addObject:@"Tutorial demonstrations are available during levels 1 and 2 but they are turned off by default. To see the tutorials tap the Settings button then tap \"Turn tutorials on\". The tutorials are recommended for new players as they show you the major features of the game.\r\rComplete \"How to Play\" instructions are available on the web at www.darkengame.com.  Happy Darkening!"];
     
     NSString *result = [items objectAtIndex:0];
     for (int i = 1; i < [items count]; i++) {

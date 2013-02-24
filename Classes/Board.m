@@ -569,6 +569,15 @@ CGFloat fvalue(float arg);
         square[i].theDarkLayer = darkLayer;
         square[i].theDarknessLabel = darkLabel;
         
+        /* debug */
+        if ( i == 0 ) {
+            NSLog(@"darkLayer.anchorPoint: (%f, %f)", darkLayer.anchorPoint.x, darkLayer.anchorPoint.y);
+            NSLog(@"darkLabel.anchorPoint: (%f, %f)", darkLabel.anchorPoint.x, darkLabel.anchorPoint.y);
+        }
+        
+         
+        
+        
             //used in tutorial
         CCSprite *targetMarker = [CCSprite spriteWithFile:@"roundTarget.png"];
         targetMarker.position = square[i].location;
@@ -576,17 +585,6 @@ CGFloat fvalue(float arg);
         [self addChild:targetMarker z:4];
         [targetMarker setOpacity:0];
 	}
-//    CCLOG(@"square[0].location: %f,%f", square[0].location.x, square[0].location.y);
-//    CCLOG(@"0.5 * CELLWIDTH: %f", 0.5 * CELLWIDTH);
-//    CCLOG(@"frameTop.position: %f,%f", frameTop.position.x, frameTop.position.y);
-//    CCLOG(@"frameTop.contentSize.height: %f", frameTop.contentSize.height);
-//    CCLOG(@"frameTop.contentSize.width: %f", frameTop.contentSize.width);
-//    CCLOG(@"frameTop.anchorpoint: %f,%f", frameTop.anchorPoint.x, frameTop.anchorPoint.y);
-//    CCLOG(@"square[0].location.y + 0.5 * CELLWIDTH + 0.5 * frameTop.contentSize.height: %f",
-//          square[0].location.y + 0.5 * CELLWIDTH + 0.5 * frameTop.contentSize.height);
-//    
-//    CCLOG(@"boardWidth, boardHeight: %f, %f", boardWidth, boardHeight);
-//    CCLOG(@"leftSpace, rightSpace: %f, %f", leftSpace, rightSpace);
 }
 
 -(void) ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -2515,6 +2513,10 @@ CGFloat fvalue(float arg);
 }
 
 -(void) decrementBombQuantity {
+    if (X.bombsOnHand <= 1) {
+        [[MessageManager sharedManager] enqueueMessageWithKey:@"getBombs" onQueue:X.boardSceneMessageQueue];
+        [[MessageManager sharedManager] showQueuedMessages];
+    }
     if (X.bombsOnHand == 0) {
         return;
     }
@@ -2532,6 +2534,10 @@ CGFloat fvalue(float arg);
 }
 
 -(void) decrementStarQuantity {
+    if (X.starsOnHand <= 1) {
+        [[MessageManager sharedManager] enqueueMessageWithKey:@"getStars" onQueue:X.boardSceneMessageQueue];
+        [[MessageManager sharedManager] showQueuedMessages];
+    }    
     if (X.starsOnHand == 0) {
         return;
     }

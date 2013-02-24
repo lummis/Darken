@@ -910,9 +910,9 @@ CCLOG(@"init X.choiceCode: %d", X.choiceCode);
                                                    onQueue:X.choiceSceneMessageQueue];
     if (X.level2TutorialsCompleted) {
         [[MessageManager sharedManager] enqueueMessageWithText:@"A final tip: high scores are gotten by keeping some squares undarkened, so play doesn't end, while darkening others again and again. As you gain tactical experience you will find your scores getting higher and higher." title:@"You Completed the Tutorials" delay:0.5f onQueue:X.choiceSceneMessageQueue];
-
+        X.tutorialsEnabled = NO;
     } else {
-        [[MessageManager sharedManager] enqueueMessageWithText:@"You completed the level 1 tutorials. Now tap the \"Do tutorial 2\" button and you will see a few more Darken features." title:@"You Can Now do Tutorial 2"
+        [[MessageManager sharedManager] enqueueMessageWithText:@"You completed the level 1 tutorials. Now tap the \"Do tutorial 2\" button and you will see a few more Darken features." title:@"Now do Tutorial 2"
                                                          delay:0.01f
                                                        onQueue:X.choiceSceneMessageQueue];
     }
@@ -930,6 +930,7 @@ CCLOG(@"init X.choiceCode: %d", X.choiceCode);
                                          showBanner:YES];
     
         [[MessageManager sharedManager] enqueueMessageWithText:@"A final tip: high scores are gotten by keeping some squares undarkened, so play doesn't end, while darkening others again and again. As you gain tactical experience you will find your scores getting higher and higher." title:@"You Completed the Tutorials!" delay:0.5f onQueue:X.choiceSceneMessageQueue];
+        X.tutorialsEnabled = NO;
     } else {
         [[MessageManager sharedManager] enqueueMessageWithText:@"You completed the level 2 tutorials. It is recommended that you also play the level 1 tutorials so you fully understand the features of Darken." title:@"You Can Now Advance to Level 3" delay:0.5f onQueue:X.choiceSceneMessageQueue];
     }

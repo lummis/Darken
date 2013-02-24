@@ -86,7 +86,7 @@ NSInteger difficulty( NSInteger, NSInteger, NSInteger, NSInteger, NSInteger,
         [defaults setInteger:X.numberOfLevels     forKey:@"numberOfLevels"];
         int resets = [defaults integerForKey:@"r"];    //was set to -1 in appDelegate
         [defaults setInteger:++resets             forKey:@"resets"];    //resets initially 0
-        [defaults setBool:YES                     forKey:@"tutorialsEnabled"];
+        [defaults setBool:NO                      forKey:@"tutorialsEnabled"];
         [defaults setBool:NO                      forKey:@"level1TutorialsCompleted"];
         [defaults setBool:NO                      forKey:@"level2TutorialsCompleted"];
         [defaults setInteger:1                    forKey:@"level"];
@@ -182,6 +182,10 @@ NSInteger difficulty( NSInteger, NSInteger, NSInteger, NSInteger, NSInteger,
     [[MessageManager sharedManager] setMessageWithTitle:@"Advisory: No Move" text:[NSString stringWithFormat:@"None of the waiting pips can be placed on the grid and the shredder is full. You must use a small star or a bomb to clear some space or shake the %@ to return to the level selection screen and start again.", [[UIDevice currentDevice] model]] type:@"checkbox" key:@"useSupplyOrShake" delay:0.8f];
     
     [[MessageManager sharedManager] setMessageWithTitle:@"Advisory: Shredder is Full" text:@"The shredder holds only three pips and now it is full. If you can't put any of the waiting pips onto the grid you must either user a star or bomb to make a valid square or shake the device to start over." type:@"checkbox" key:@"useShredderWhenFull" delay:0.5f];
+    
+    [[MessageManager sharedManager] setMessageWithTitle:@"Advisory: Get more stars" text:@"To get more stars double tap on the star pile." type:@"checkbox" key:@"getStars" delay:0.5f];
+    
+    [[MessageManager sharedManager] setMessageWithTitle:@"Advisory: Get more bombs" text:@"To get more bombs double tap on the bomb pile." type:@"checkbox" key:@"getBombs" delay:0.5f];
     
     CCLOG(@"Printing common in model/launch");
     [self printCommonFull];
@@ -466,8 +470,6 @@ NSInteger difficulty( NSInteger, NSInteger, NSInteger, NSInteger, NSInteger,
         X.bombsOnHand = X.bombsSavedDuringTutorial;
         X.starsSavedDuringTutorial = -1;   //debug
         X.bombsSavedDuringTutorial = -1;
-        X.level2TutorialsCompleted = YES;
-        X.tutorialsEnabled = NO;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"endByCompleting" object:nil];
     }
     
@@ -488,8 +490,9 @@ NSInteger difficulty( NSInteger, NSInteger, NSInteger, NSInteger, NSInteger,
     
     if (X.level == 10 && level10Completions <= 25) {
         double percent = (double)level10Completions / 25. * 100.;
-        [[RLGameCenter singleton] submitAchievement:@"com.electricturkey.darken.level10_25"     percentComplete:percent showBanner:YES];
-        CCLOG(@"achievement name: %@, percent: %g", @"com.electricturkey.darken.level10_25", percent);
+        [[RLGameCenter singleton] submitAchievement:@"com.electricturkey.darken.level10_20"     percentComplete:percent showBanner:YES];
+        CCLOG(@"achievement name: %@, percent: %g", @"com.electricturkey.darken.level10_20", percent);
+        CCLOG(@"the above achievement is level 10 completed 25 times in spite of its name");
     }
     
     CCLOG(@"X.finishWithEmptyGridCount: %d", X.finishWithEmptyGridCount);
@@ -527,7 +530,7 @@ NSInteger difficulty( NSInteger, NSInteger, NSInteger, NSInteger, NSInteger,
     
     if(X.tutorialsEnabled && X.level == 2) {
         [[NSNotificationCenter defaultCenter] removeObserver:X.choiceSceneP];
-        [[MessageManager sharedManager] enqueueMessageWithText:@"You have now seen all the tutorial messages but you didn't darken every square at level 2. To finish the level 2 tutorials fill rows or columns until every square is darkened at least one degree." title:@"Try level 2 again" delay:0.5f onQueue:X.choiceSceneMessageQueue];
+        [[MessageManager sharedManager] enqueueMessageWithText:@"You have now seen all the tutorial messages but you didn't darken every square at level 2. To finish the level 2 tutorials fill rows or columns until every square is darkened at least once." title:@"Try level 2 again" delay:0.5f onQueue:X.choiceSceneMessageQueue];
     }
     
     finishedTagString = [NSString stringWithFormat:@"Failed level %d", X.level];
